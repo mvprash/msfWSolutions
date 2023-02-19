@@ -29,6 +29,8 @@ namespace WindowsFormsApp1
         public System.DateTime DateOfEntry { get; set; }
         public string Rack { get; set; }
         public string BatchNumber { get; set; }
+        public bool IsSaleDiscount { get; set; }
+        public int SaleDiscountP { get; set; }
     
         public virtual BrandType BrandType { get; set; }
         public virtual ColourType ColourType { get; set; }

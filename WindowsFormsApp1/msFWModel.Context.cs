@@ -31,5 +31,6 @@ namespace WindowsFormsApp1
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<ItemType> ItemTypes { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<ItemImage> ItemImages { get; set; }
     }
 }

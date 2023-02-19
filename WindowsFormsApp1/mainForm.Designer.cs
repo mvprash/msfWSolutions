@@ -31,6 +31,8 @@ namespace WindowsFormsApp1
         {
             this.cmdImport = new System.Windows.Forms.Button();
             this.cmdBarCodes = new System.Windows.Forms.Button();
+            this.textBoxXAxis = new System.Windows.Forms.TextBox();
+            this.textBoxYAxis = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cmdImport
@@ -53,16 +55,33 @@ namespace WindowsFormsApp1
             this.cmdBarCodes.UseVisualStyleBackColor = true;
             this.cmdBarCodes.Click += new System.EventHandler(this.cmdBarCodes_Click);
             // 
+            // textBoxXAxis
+            // 
+            this.textBoxXAxis.Location = new System.Drawing.Point(481, 40);
+            this.textBoxXAxis.Name = "textBoxXAxis";
+            this.textBoxXAxis.Size = new System.Drawing.Size(100, 20);
+            this.textBoxXAxis.TabIndex = 2;
+            // 
+            // textBoxYAxis
+            // 
+            this.textBoxYAxis.Location = new System.Drawing.Point(481, 66);
+            this.textBoxYAxis.Name = "textBoxYAxis";
+            this.textBoxYAxis.Size = new System.Drawing.Size(100, 20);
+            this.textBoxYAxis.TabIndex = 3;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBoxYAxis);
+            this.Controls.Add(this.textBoxXAxis);
             this.Controls.Add(this.cmdBarCodes);
             this.Controls.Add(this.cmdImport);
             this.Name = "mainForm";
             this.Text = "Main";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -70,6 +89,8 @@ namespace WindowsFormsApp1
 
         private System.Windows.Forms.Button cmdImport;
         private System.Windows.Forms.Button cmdBarCodes;
+        private System.Windows.Forms.TextBox textBoxXAxis;
+        private System.Windows.Forms.TextBox textBoxYAxis;
     }
 }
 

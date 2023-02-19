@@ -30,6 +30,8 @@
     <EntitySetMapping Name="Items">
       <EntityTypeMapping TypeName="MSFWModel.Item">
         <MappingFragment StoreEntitySet="Items">
+          <ScalarProperty Name="SaleDiscountP" ColumnName="SaleDiscountP" />
+          <ScalarProperty Name="IsSaleDiscount" ColumnName="IsSaleDiscount" />
           <ScalarProperty Name="BatchNumber" ColumnName="BatchNumber" />
           <ScalarProperty Name="Rack" ColumnName="Rack" />
           <ScalarProperty Name="InvID" ColumnName="InvID" />
@@ -61,6 +63,15 @@
         <MappingFragment StoreEntitySet="Suppliers">
           <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemImages">
+      <EntityTypeMapping TypeName="MSFWModel.ItemImage">
+        <MappingFragment StoreEntitySet="ItemImages">
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="ICode" ColumnName="ICode" />
+          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

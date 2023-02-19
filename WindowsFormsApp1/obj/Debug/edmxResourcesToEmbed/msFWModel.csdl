@@ -48,6 +48,8 @@
     <NavigationProperty Name="ItemType" Relationship="MSFWModel.FK_Items_ItemTypes" FromRole="Item" ToRole="ItemType" />
     <Property Name="Rack" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
     <Property Name="BatchNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="IsSaleDiscount" Type="Boolean" Nullable="false" />
+    <Property Name="SaleDiscountP" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="ItemType">
     <Key>
@@ -83,6 +85,7 @@
       <End Role="ItemType" EntitySet="ItemTypes" />
       <End Role="Item" EntitySet="Items" />
     </AssociationSet>
+    <EntitySet Name="ItemImages" EntityType="MSFWModel.ItemImage" />
   </EntityContainer>
   <Association Name="FK_Items_BrandTypes">
     <End Type="MSFWModel.BrandType" Role="BrandType" Multiplicity="1" />
@@ -120,4 +123,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="ItemImage">
+    <Key>
+      <PropertyRef Name="ImageID" />
+    </Key>
+    <Property Name="ImageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ICode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+  </EntityType>
 </Schema>

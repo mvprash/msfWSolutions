@@ -94,6 +94,9 @@
     <Compile Include="Item.cs">
       <DependentUpon>msFWModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ItemImage.cs">
+      <DependentUpon>msFWModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ItemType.cs">
       <DependentUpon>msFWModel.tt</DependentUpon>
     </Compile>

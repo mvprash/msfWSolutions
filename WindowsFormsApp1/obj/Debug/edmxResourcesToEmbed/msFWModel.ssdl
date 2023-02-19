@@ -24,6 +24,14 @@
     <Property Name="ColourID" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="ItemImages">
+    <Key>
+      <PropertyRef Name="ImageID" />
+    </Key>
+    <Property Name="ImageID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ICode" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="Image" Type="image" Nullable="false" />
+  </EntityType>
   <EntityType Name="Items">
     <Key>
       <PropertyRef Name="InvID" />
@@ -43,6 +51,8 @@
     <Property Name="DateOfEntry" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
     <Property Name="Rack" Type="varchar" MaxLength="3" Nullable="false" />
     <Property Name="BatchNumber" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="IsSaleDiscount" Type="bit" Nullable="false" />
+    <Property Name="SaleDiscountP" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ItemTypes">
     <Key>
@@ -58,6 +68,9 @@
     <Property Name="SupplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_ItemImages_Items' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_ItemImages_Items" />-->
   <Association Name="FK_Items_BrandTypes">
     <End Role="BrandTypes" Type="Self.BrandTypes" Multiplicity="1" />
     <End Role="Items" Type="Self.Items" Multiplicity="*" />
@@ -98,6 +111,7 @@
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BrandTypes" EntityType="Self.BrandTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ColourTypes" EntityType="Self.ColourTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItemImages" EntityType="Self.ItemImages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ItemTypes" EntityType="Self.ItemTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
