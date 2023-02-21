@@ -29,7 +29,7 @@ namespace WindowsFormsApp1
         {
 
             
-            var filePath = @"F:\MVP\personal\myShop\InventoryFile.xlsx";
+            var filePath = @"E:\Software-msFWSolutions\InventoryFile.xlsx";
 
             try
             {
@@ -70,8 +70,8 @@ namespace WindowsFormsApp1
                                         select iteM).FirstOrDefault();
                         if (itBatch != null)
                         {
-                            MessageBox.Show("This Batch is already completed");
-                            break;
+                          //  MessageBox.Show("This Batch is already completed");
+                            continue;
                         }
 
                         Item itm = new Item();
@@ -114,13 +114,14 @@ namespace WindowsFormsApp1
                         //msfWContext.Items.Add(new Item( { ICode= dataRow[0].ToString(),HSN= dataRow[1].ToString(),Description= dataRow[2].ToString()
                         //    ,ColorID=(from c in msfWContext.ColourTypes.Where(c=>c.Description==dataRow[3].ToString()))
 
-                        foreach (var item in dataRow.ItemArray)
-                        {
-                            Console.Write(item + " ");
-                        }
-                        Console.WriteLine();
+                        //foreach (var item in dataRow.ItemArray)
+                        //{
+                        //    Console.Write(item + " ");
+                        //}
+                        //Console.WriteLine();
                     }
 
+                    
                     msfWContext.SaveChanges();
                     MessageBox.Show("Imported Successfully");
                 }
@@ -285,11 +286,13 @@ namespace WindowsFormsApp1
 
 
             int k = 0;
+            int rowCount = 1;
+            int columnCount = 1;
             //int xSize=Convert.ToInt32(textBoxXAxis.Text), ySize= Convert.ToInt32(textBoxYAxis.Text);
-            int xSize = 30, ySize = 780;
+            int xSize = 20, ySize = 780;
             int barCodeWidth = 100, barCodeHeight = 30;
             
-            foreach (Item itm in msfWContext.Items)
+            foreach (Item itm in msfWContext.Items.Take(44))
             {
 
 
@@ -302,9 +305,10 @@ namespace WindowsFormsApp1
 
                 barcodeWriter.Options = new QrCodeEncodingOptions
                 {
-                    Height = 50,
+                    Height = 40,
                     Width = 200,
-                    Margin = 0
+                    Margin = 0,
+                    PureBarcode = true
                 };
 
                 //        // Generate the barcode image
@@ -328,26 +332,52 @@ namespace WindowsFormsApp1
                 //iTextSharp.text.Image image1 = iTextSharp.text.Image.GetInstance(barcodeImage, System.Drawing.Imaging.ImageFormat.Png);
 
                 // Create a Bitmap to hold the barcode and the text
-                var bitmap = new Bitmap(200, 70, PixelFormat.Format32bppArgb);
+                var bitmap = new Bitmap(210, 90, PixelFormat.Format32bppArgb);
 
                 // Get a Graphics object for the Bitmap
                 using (var graphics = Graphics.FromImage(bitmap))
                 {
                     // Set the font and size for the text
-                    var font = new System.Drawing.Font(FontFamily.GenericSansSerif, 12, FontStyle.Regular);
+                    var font = new System.Drawing.Font(FontFamily.GenericSansSerif, 16, FontStyle.Regular);
 
                     // Set the color for the text
                     var brush = new SolidBrush(Color.Black);
 
                     // Draw the text at the top of the Bitmap
-                    var text = rupeeSymbol + " " + itm.SellingPrice.ToString() + "      R: " + itm.Rack;
+                    int priceAfterDiscount=0;
+                    if (itm.IsSaleDiscount)
+                    {
+                        priceAfterDiscount =  (itm.SellingPrice) - (itm.SellingPrice * itm.SaleDiscountP / 100);
+                    }
+
+                    string text = string.Empty;
+                    if (itm.IsSaleDiscount)
+                        //var text = "MRP: " + rupeeSymbol + " " + itm.SellingPrice.ToString() + " DP: " + (itm.SellingPrice - ((itm.SellingPrice-itm.SellingPrice%itm.SaleDiscountP)).ToString() +      @"R: " + itm.Rack;
+                         text = rupeeSymbol + itm.SellingPrice.ToString() + " DP:" + rupeeSymbol + " " + priceAfterDiscount.ToString() +  @" [R:" + itm.Rack.ToString() + " ]";
+                    else
+                         text = rupeeSymbol + itm.SellingPrice.ToString() + @"                 [R:" + itm.Rack.ToString() + " ]";
+
+
                     var textSize = graphics.MeasureString(text, font);
-                    var textX = (bitmap.Width - textSize.Width) / 2;
+                    var textX = (bitmap.Width - textSize.Width) / 3;
                     graphics.DrawString(text, font, brush, new PointF(textX, 0));
 
                     // Generate the barcode and draw it at the bottom of the Bitmap
                     var barcodeBitmap = barcodeWriter.Write(data);
                     graphics.DrawImage(barcodeBitmap, new Point(0, 20));
+
+
+
+                    // Draw text after the barcode
+                    var textA = data + "       ";
+                    var fontA = new System.Drawing.Font(FontFamily.GenericSansSerif, 16, FontStyle.Regular);
+                    var brushA = new SolidBrush(Color.Black);
+                    var textSizeA = graphics.MeasureString(textA, font);
+                    var textXA = (bitmap.Width - textSizeA.Width) / 2;
+                    var textYA = barcodeBitmap.Height + 20;
+                    graphics.DrawString(textA, fontA, brushA, new PointF(textXA, textYA));
+
+
                     iTextSharp.text.Image image1 = iTextSharp.text.Image.GetInstance(bitmap, System.Drawing.Imaging.ImageFormat.Png);
 
                     image1.ScaleAbsolute(barCodeWidth, barCodeHeight);
@@ -356,14 +386,61 @@ namespace WindowsFormsApp1
 
                     if (k > 1 && k<=4)
                     {
-                        xSize = xSize + (barCodeWidth+40);
+                        columnCount = columnCount + 1;
+
+                        if (columnCount == 3)
+                        {
+                            xSize = xSize + (barCodeWidth + 60);
+                        }
+                        else
+                        {
+                            xSize = xSize + (barCodeWidth + 40);
+                        }
                         image1.SetAbsolutePosition(xSize, ySize);
                     }
                     else if(k==5)
                     {
+                        rowCount = rowCount + 1;
 
-                        xSize = 30;
-                        ySize = ySize - (barCodeHeight+32);
+                        columnCount = 1;
+                        xSize = 20;
+                        
+                        if (rowCount == 3)
+                        {
+                            ySize = ySize - (barCodeHeight + 50);
+                        }
+                        else if (rowCount == 4)
+                        {
+                            ySize = ySize - (barCodeHeight + 50);
+                        }
+                        else if (rowCount == 5)
+                        {
+                            ySize = ySize - (barCodeHeight + 50);
+                        }
+                        else if (rowCount == 7)
+                        {
+                            ySize = ySize - (barCodeHeight + 50);
+                        }
+                        else if (rowCount == 8)
+                        {
+                            ySize = ySize - (barCodeHeight + 50);
+                        }
+                        else if (rowCount == 10)
+                        {
+                            ySize = ySize - (barCodeHeight + 50);
+                        }
+                        else if (rowCount == 11)
+                        {
+                            ySize = ySize - (barCodeHeight + 40);
+                        }
+                        else if (rowCount == 12)
+                        {
+                            ySize = ySize - (barCodeHeight + 32);
+                        }
+                        else
+                        {
+                            ySize = ySize - (barCodeHeight + 32);
+                        }
                         image1.SetAbsolutePosition(xSize, ySize);
                         k = 1;
                     }
