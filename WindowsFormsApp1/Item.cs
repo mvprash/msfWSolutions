@@ -7,13 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowsFormsApp1
+namespace MSFWSoftSolutions
 {
     using System;
     using System.Collections.Generic;
     
     public partial class Item
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Item()
+        {
+            this.InvoiceItems = new HashSet<InvoiceItem>();
+        }
+    
         public int InvID { get; set; }
         public string ICode { get; set; }
         public string HSN { get; set; }
@@ -24,16 +30,19 @@ namespace WindowsFormsApp1
         public int AvailableUnits { get; set; }
         public int CostPrice { get; set; }
         public int SellingPrice { get; set; }
-        public int MaxDiscount { get; set; }
-        public System.DateTime DateOfPurchase { get; set; }
+        public int LastSellingPrice { get; set; }
         public System.DateTime DateOfEntry { get; set; }
         public string Rack { get; set; }
         public string BatchNumber { get; set; }
         public bool IsSaleDiscount { get; set; }
         public int SaleDiscountP { get; set; }
+        public System.DateTime DateOfPurchase { get; set; }
+        public Nullable<System.DateTime> DateOfEntryNew { get; set; }
     
         public virtual BrandType BrandType { get; set; }
         public virtual ColourType ColourType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
         public virtual ItemType ItemType { get; set; }
     }
 }

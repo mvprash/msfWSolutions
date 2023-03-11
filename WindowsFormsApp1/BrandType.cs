@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowsFormsApp1
+namespace MSFWSoftSolutions
 {
     using System;
     using System.Collections.Generic;

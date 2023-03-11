@@ -4,17 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="790062ca87dd458989ba8f968dcee7b6" Name="Diagram1">
-        <EntityTypeShape EntityType="MSFWModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MSFWModel.BrandType" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MSFWModel.ColourType" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MSFWModel.Item" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MSFWModel.ItemType" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MSFWModel.Supplier" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="a1cf72d948e44cf0ba2efc99aa9154d7" Name="Diagram1">
+        <EntityTypeShape EntityType="MSFWModel.BrandType" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="MSFWModel.ColourType" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MSFWModel.CompanyDetail" Width="1.5" PointX="5.75" PointY="7.75" />
+        <EntityTypeShape EntityType="MSFWModel.InvoiceDetail" Width="1.5" PointX="3" PointY="8.625" />
+        <EntityTypeShape EntityType="MSFWModel.InvoiceItem" Width="1.5" PointX="5.25" PointY="3.125" />
+        <EntityTypeShape EntityType="MSFWModel.ItemImage" Width="1.5" PointX="7.75" PointY="1.75" />
+        <EntityTypeShape EntityType="MSFWModel.Item" Width="1.5" PointX="3" PointY="2.125" />
+        <EntityTypeShape EntityType="MSFWModel.ItemSize" Width="1.5" PointX="3" PointY="12.5" />
+        <EntityTypeShape EntityType="MSFWModel.ItemType" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="MSFWModel.Supplier" Width="1.5" PointX="7.75" PointY="4.75" />
         <AssociationConnector Association="MSFWModel.FK_Items_BrandTypes" />
         <AssociationConnector Association="MSFWModel.FK_Items_ColourTypes" />
+        <AssociationConnector Association="MSFWModel.FK_InvoiceItems_InvoiceDetails" />
+        <AssociationConnector Association="MSFWModel.FK_InvoiceItems_Items" />
+        <AssociationConnector Association="MSFWModel.FK_InvoiceItems_ItemSizes" />
         <AssociationConnector Association="MSFWModel.FK_Items_ItemTypes" />
-        <EntityTypeShape EntityType="MSFWModel.ItemImage" Width="1.5" PointX="5.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

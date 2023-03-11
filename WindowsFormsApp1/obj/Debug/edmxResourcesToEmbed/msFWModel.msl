@@ -1,68 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="MSFWModelStoreContainer" CdmEntityContainer="MSFWEntities">
-    <EntitySetMapping Name="C__MigrationHistory">
-      <EntityTypeMapping TypeName="MSFWModel.C__MigrationHistory">
-        <MappingFragment StoreEntitySet="__MigrationHistory">
-          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-          <ScalarProperty Name="Model" ColumnName="Model" />
-          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+  <EntityContainerMapping StorageEntityContainer="MSFWModelStoreContainer" CdmEntityContainer="MSFWEntities2">
     <EntitySetMapping Name="BrandTypes">
       <EntityTypeMapping TypeName="MSFWModel.BrandType">
         <MappingFragment StoreEntitySet="BrandTypes">
-          <ScalarProperty Name="BrandID" ColumnName="BrandID" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="BrandID" ColumnName="BrandID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ColourTypes">
       <EntityTypeMapping TypeName="MSFWModel.ColourType">
         <MappingFragment StoreEntitySet="ColourTypes">
+          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="ColourID" ColumnName="ColourID" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Items">
-      <EntityTypeMapping TypeName="MSFWModel.Item">
-        <MappingFragment StoreEntitySet="Items">
-          <ScalarProperty Name="SaleDiscountP" ColumnName="SaleDiscountP" />
-          <ScalarProperty Name="IsSaleDiscount" ColumnName="IsSaleDiscount" />
-          <ScalarProperty Name="BatchNumber" ColumnName="BatchNumber" />
-          <ScalarProperty Name="Rack" ColumnName="Rack" />
+    <EntitySetMapping Name="CompanyDetails">
+      <EntityTypeMapping TypeName="MSFWModel.CompanyDetail">
+        <MappingFragment StoreEntitySet="CompanyDetails">
+          <ScalarProperty Name="IGST" ColumnName="IGST" />
+          <ScalarProperty Name="SGST" ColumnName="SGST" />
+          <ScalarProperty Name="CGST" ColumnName="CGST" />
+          <ScalarProperty Name="GSTNumber" ColumnName="GSTNumber" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceDetails">
+      <EntityTypeMapping TypeName="MSFWModel.InvoiceDetail">
+        <MappingFragment StoreEntitySet="InvoiceDetails">
+          <ScalarProperty Name="Cash" ColumnName="Cash" />
+          <ScalarProperty Name="Digital" ColumnName="Digital" />
+          <ScalarProperty Name="InvoicePDF" ColumnName="InvoicePDF" />
+          <ScalarProperty Name="TotalPayable" ColumnName="TotalPayable" />
+          <ScalarProperty Name="SGST" ColumnName="SGST" />
+          <ScalarProperty Name="CGST" ColumnName="CGST" />
+          <ScalarProperty Name="TaxableAmount" ColumnName="TaxableAmount" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceItems">
+      <EntityTypeMapping TypeName="MSFWModel.InvoiceItem">
+        <MappingFragment StoreEntitySet="InvoiceItems">
+          <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
           <ScalarProperty Name="InvID" ColumnName="InvID" />
-          <ScalarProperty Name="ICode" ColumnName="ICode" />
-          <ScalarProperty Name="HSN" ColumnName="HSN" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-          <ScalarProperty Name="ColorID" ColumnName="ColorID" />
-          <ScalarProperty Name="BrandID" ColumnName="BrandID" />
-          <ScalarProperty Name="AvailableUnits" ColumnName="AvailableUnits" />
-          <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
-          <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
-          <ScalarProperty Name="MaxDiscount" ColumnName="MaxDiscount" />
-          <ScalarProperty Name="DateOfPurchase" ColumnName="DateOfPurchase" />
-          <ScalarProperty Name="DateOfEntry" ColumnName="DateOfEntry" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ItemTypes">
-      <EntityTypeMapping TypeName="MSFWModel.ItemType">
-        <MappingFragment StoreEntitySet="ItemTypes">
-          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Suppliers">
-      <EntityTypeMapping TypeName="MSFWModel.Supplier">
-        <MappingFragment StoreEntitySet="Suppliers">
-          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="InvoiceItemID" ColumnName="InvoiceItemID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -72,6 +65,57 @@
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="ICode" ColumnName="ICode" />
           <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="MSFWModel.Item">
+        <MappingFragment StoreEntitySet="Items">
+          <ScalarProperty Name="DateOfEntryNew" ColumnName="DateOfEntryNew" />
+          <ScalarProperty Name="DateOfPurchase" ColumnName="DateOfPurchase" />
+          <ScalarProperty Name="SaleDiscountP" ColumnName="SaleDiscountP" />
+          <ScalarProperty Name="IsSaleDiscount" ColumnName="IsSaleDiscount" />
+          <ScalarProperty Name="BatchNumber" ColumnName="BatchNumber" />
+          <ScalarProperty Name="Rack" ColumnName="Rack" />
+          <ScalarProperty Name="DateOfEntry" ColumnName="DateOfEntry" />
+          <ScalarProperty Name="LastSellingPrice" ColumnName="LastSellingPrice" />
+          <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+          <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+          <ScalarProperty Name="AvailableUnits" ColumnName="AvailableUnits" />
+          <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+          <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="HSN" ColumnName="HSN" />
+          <ScalarProperty Name="ICode" ColumnName="ICode" />
+          <ScalarProperty Name="InvID" ColumnName="InvID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemSizes">
+      <EntityTypeMapping TypeName="MSFWModel.ItemSize">
+        <MappingFragment StoreEntitySet="ItemSizes">
+          <ScalarProperty Name="BatchNumber" ColumnName="BatchNumber" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="ICode" ColumnName="ICode" />
+          <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemTypes">
+      <EntityTypeMapping TypeName="MSFWModel.ItemType">
+        <MappingFragment StoreEntitySet="ItemTypes">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="MSFWModel.Supplier">
+        <MappingFragment StoreEntitySet="Suppliers">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

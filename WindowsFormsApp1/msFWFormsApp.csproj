@@ -6,12 +6,28 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1C205334-C97F-4E9B-8D1F-B864E70B5B42}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WindowsFormsApp1</RootNamespace>
-    <AssemblyName>WindowsFormsApp1</AssemblyName>
+    <RootNamespace>MSFWSoftSolutions</RootNamespace>
+    <AssemblyName>MSFWSoftSolutions</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>E:\MSFW_Production_Softwares\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +47,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>D1EEFAAD010D29CB61541CBFB2CF12BE11C2863C</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>msFWFormsApp_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -82,20 +110,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="barCodeItem.cs" />
+    <Compile Include="BillDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BillDetailsForm.Designer.cs">
+      <DependentUpon>BillDetailsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BrandType.cs">
       <DependentUpon>msFWModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ColourType.cs">
       <DependentUpon>msFWModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="C__MigrationHistory.cs">
+    <Compile Include="CompanyDetail.cs">
       <DependentUpon>msFWModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DisplayInvoiceItem.cs" />
     <Compile Include="frmGenerateBill.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmGenerateBill.Designer.cs">
       <DependentUpon>frmGenerateBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Incentive.cs" />
+    <Compile Include="InvoiceDetail.cs">
+      <DependentUpon>msFWModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceItem.cs">
+      <DependentUpon>msFWModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Item.cs">
       <DependentUpon>msFWModel.tt</DependentUpon>
@@ -103,6 +146,10 @@
     <Compile Include="ItemImage.cs">
       <DependentUpon>msFWModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ItemSize.cs">
+      <DependentUpon>msFWModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DisplayItemSizes.cs" />
     <Compile Include="ItemType.cs">
       <DependentUpon>msFWModel.tt</DependentUpon>
     </Compile>
@@ -111,6 +158,12 @@
     </Compile>
     <Compile Include="mainForm.Designer.cs">
       <DependentUpon>mainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mainSalesMenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mainSalesMenForm.Designer.cs">
+      <DependentUpon>mainSalesMenForm.cs</DependentUpon>
     </Compile>
     <Compile Include="msFWModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -132,11 +185,17 @@
     <Compile Include="Supplier.cs">
       <DependentUpon>msFWModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BillDetailsForm.resx">
+      <DependentUpon>BillDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmGenerateBill.resx">
       <DependentUpon>frmGenerateBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mainSalesMenForm.resx">
+      <DependentUpon>mainSalesMenForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -146,11 +205,13 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EntityDeploy Include="msFWModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>msFWModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="msFWFormsApp_TemporaryKey.pfx" />
     <None Include="msFWModel.edmx.diagram">
       <DependentUpon>msFWModel.edmx</DependentUpon>
     </None>
@@ -169,10 +230,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="msFWModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>msFWModel.Context.cs</LastGenOutput>
       <DependentUpon>msFWModel.edmx</DependentUpon>
+      <LastGenOutput>msFWModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="msFWModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -181,7 +245,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

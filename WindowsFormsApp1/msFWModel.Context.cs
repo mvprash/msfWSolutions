@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowsFormsApp1
+namespace MSFWSoftSolutions
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MSFWEntities : DbContext
+    public partial class MSFWEntities2 : DbContext
     {
-        public MSFWEntities()
-            : base("name=MSFWEntities")
+        public MSFWEntities2()
+            : base("name=MSFWEntities2")
         {
         }
     
@@ -25,12 +25,15 @@ namespace WindowsFormsApp1
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<BrandType> BrandTypes { get; set; }
         public virtual DbSet<ColourType> ColourTypes { get; set; }
+        public virtual DbSet<CompanyDetail> CompanyDetails { get; set; }
+        public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
+        public virtual DbSet<InvoiceItem> InvoiceItems { get; set; }
+        public virtual DbSet<ItemImage> ItemImages { get; set; }
         public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<ItemSize> ItemSizes { get; set; }
         public virtual DbSet<ItemType> ItemTypes { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
-        public virtual DbSet<ItemImage> ItemImages { get; set; }
     }
 }

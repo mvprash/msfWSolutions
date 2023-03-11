@@ -1,21 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MSFWModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="C__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
+  <EntityContainer Name="MSFWEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BrandTypes" EntityType="MSFWModel.BrandType" />
+    <EntitySet Name="ColourTypes" EntityType="MSFWModel.ColourType" />
+    <EntitySet Name="CompanyDetails" EntityType="MSFWModel.CompanyDetail" />
+    <EntitySet Name="InvoiceDetails" EntityType="MSFWModel.InvoiceDetail" />
+    <EntitySet Name="InvoiceItems" EntityType="MSFWModel.InvoiceItem" />
+    <EntitySet Name="ItemImages" EntityType="MSFWModel.ItemImage" />
+    <EntitySet Name="Items" EntityType="MSFWModel.Item" />
+    <EntitySet Name="ItemSizes" EntityType="MSFWModel.ItemSize" />
+    <EntitySet Name="ItemTypes" EntityType="MSFWModel.ItemType" />
+    <EntitySet Name="Suppliers" EntityType="MSFWModel.Supplier" />
+    <AssociationSet Name="FK_Items_BrandTypes" Association="MSFWModel.FK_Items_BrandTypes">
+      <End Role="BrandType" EntitySet="BrandTypes" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Items_ColourTypes" Association="MSFWModel.FK_Items_ColourTypes">
+      <End Role="ColourType" EntitySet="ColourTypes" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InvoiceItems_InvoiceDetails" Association="MSFWModel.FK_InvoiceItems_InvoiceDetails">
+      <End Role="InvoiceDetail" EntitySet="InvoiceDetails" />
+      <End Role="InvoiceItem" EntitySet="InvoiceItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InvoiceItems_Items" Association="MSFWModel.FK_InvoiceItems_Items">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="InvoiceItem" EntitySet="InvoiceItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InvoiceItems_ItemSizes" Association="MSFWModel.FK_InvoiceItems_ItemSizes">
+      <End Role="ItemSize" EntitySet="ItemSizes" />
+      <End Role="InvoiceItem" EntitySet="InvoiceItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Items_ItemTypes" Association="MSFWModel.FK_Items_ItemTypes">
+      <End Role="ItemType" EntitySet="ItemTypes" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="BrandType">
     <Key>
       <PropertyRef Name="BrandID" />
     </Key>
     <Property Name="BrandID" Type="Int32" Nullable="false" />
-    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Items" Relationship="MSFWModel.FK_Items_BrandTypes" FromRole="BrandType" ToRole="Item" />
   </EntityType>
   <EntityType Name="ColourType">
@@ -23,40 +49,104 @@
       <PropertyRef Name="ColourID" />
     </Key>
     <Property Name="ColourID" Type="Int32" Nullable="false" />
-    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Items" Relationship="MSFWModel.FK_Items_ColourTypes" FromRole="ColourType" ToRole="Item" />
+  </EntityType>
+  <EntityType Name="CompanyDetail">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GSTNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CGST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="SGST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="IGST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="InvoiceDetail">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="InvoiceNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TaxableAmount" Type="Int32" Nullable="false" />
+    <Property Name="CGST" Type="Int32" Nullable="false" />
+    <Property Name="SGST" Type="Int32" Nullable="false" />
+    <Property Name="TotalPayable" Type="Int32" Nullable="false" />
+    <Property Name="InvoicePDF" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="Digital" Type="Boolean" Nullable="false" />
+    <Property Name="Cash" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="InvoiceItems" Relationship="MSFWModel.FK_InvoiceItems_InvoiceDetails" FromRole="InvoiceDetail" ToRole="InvoiceItem" />
+  </EntityType>
+  <EntityType Name="InvoiceItem">
+    <Key>
+      <PropertyRef Name="InvoiceItemID" />
+    </Key>
+    <Property Name="InvoiceItemID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceID" Type="Int64" Nullable="false" />
+    <Property Name="InvID" Type="Int32" />
+    <Property Name="Rate" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="ItemDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalAmount" Type="Int32" Nullable="false" />
+    <Property Name="SizeID" Type="Int64" />
+    <NavigationProperty Name="InvoiceDetail" Relationship="MSFWModel.FK_InvoiceItems_InvoiceDetails" FromRole="InvoiceItem" ToRole="InvoiceDetail" />
+    <NavigationProperty Name="Item" Relationship="MSFWModel.FK_InvoiceItems_Items" FromRole="InvoiceItem" ToRole="Item" />
+    <NavigationProperty Name="ItemSize" Relationship="MSFWModel.FK_InvoiceItems_ItemSizes" FromRole="InvoiceItem" ToRole="ItemSize" />
+  </EntityType>
+  <EntityType Name="ItemImage">
+    <Key>
+      <PropertyRef Name="ImageID" />
+    </Key>
+    <Property Name="ImageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ICode" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="Item">
     <Key>
       <PropertyRef Name="InvID" />
     </Key>
     <Property Name="InvID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ICode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="HSN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ICode" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Name="HSN" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="TypeID" Type="Int32" Nullable="false" />
     <Property Name="ColorID" Type="Int32" Nullable="false" />
     <Property Name="BrandID" Type="Int32" Nullable="false" />
     <Property Name="AvailableUnits" Type="Int32" Nullable="false" />
     <Property Name="CostPrice" Type="Int32" Nullable="false" />
     <Property Name="SellingPrice" Type="Int32" Nullable="false" />
-    <Property Name="MaxDiscount" Type="Int32" Nullable="false" />
-    <Property Name="DateOfPurchase" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastSellingPrice" Type="Int32" Nullable="false" />
     <Property Name="DateOfEntry" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
-    <NavigationProperty Name="BrandType" Relationship="MSFWModel.FK_Items_BrandTypes" FromRole="Item" ToRole="BrandType" />
-    <NavigationProperty Name="ColourType" Relationship="MSFWModel.FK_Items_ColourTypes" FromRole="Item" ToRole="ColourType" />
-    <NavigationProperty Name="ItemType" Relationship="MSFWModel.FK_Items_ItemTypes" FromRole="Item" ToRole="ItemType" />
     <Property Name="Rack" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
     <Property Name="BatchNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
     <Property Name="IsSaleDiscount" Type="Boolean" Nullable="false" />
     <Property Name="SaleDiscountP" Type="Int32" Nullable="false" />
+    <Property Name="DateOfPurchase" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateOfEntryNew" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="BrandType" Relationship="MSFWModel.FK_Items_BrandTypes" FromRole="Item" ToRole="BrandType" />
+    <NavigationProperty Name="ColourType" Relationship="MSFWModel.FK_Items_ColourTypes" FromRole="Item" ToRole="ColourType" />
+    <NavigationProperty Name="InvoiceItems" Relationship="MSFWModel.FK_InvoiceItems_Items" FromRole="Item" ToRole="InvoiceItem" />
+    <NavigationProperty Name="ItemType" Relationship="MSFWModel.FK_Items_ItemTypes" FromRole="Item" ToRole="ItemType" />
+  </EntityType>
+  <EntityType Name="ItemSize">
+    <Key>
+      <PropertyRef Name="SizeID" />
+    </Key>
+    <Property Name="SizeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ICode" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Name="Size" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+    <Property Name="BatchNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="InvoiceItems" Relationship="MSFWModel.FK_InvoiceItems_ItemSizes" FromRole="ItemSize" ToRole="InvoiceItem" />
   </EntityType>
   <EntityType Name="ItemType">
     <Key>
       <PropertyRef Name="TypeID" />
     </Key>
     <Property Name="TypeID" Type="Int32" Nullable="false" />
-    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Items" Relationship="MSFWModel.FK_Items_ItemTypes" FromRole="ItemType" ToRole="Item" />
   </EntityType>
   <EntityType Name="Supplier">
@@ -66,27 +156,6 @@
     <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityContainer Name="MSFWEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-    <EntitySet Name="BrandTypes" EntityType="Self.BrandType" />
-    <EntitySet Name="ColourTypes" EntityType="Self.ColourType" />
-    <EntitySet Name="Items" EntityType="Self.Item" />
-    <EntitySet Name="ItemTypes" EntityType="Self.ItemType" />
-    <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
-    <AssociationSet Name="FK_Items_BrandTypes" Association="MSFWModel.FK_Items_BrandTypes">
-      <End Role="BrandType" EntitySet="BrandTypes" />
-      <End Role="Item" EntitySet="Items" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Items_ColourTypes" Association="MSFWModel.FK_Items_ColourTypes">
-      <End Role="ColourType" EntitySet="ColourTypes" />
-      <End Role="Item" EntitySet="Items" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Items_ItemTypes" Association="MSFWModel.FK_Items_ItemTypes">
-      <End Role="ItemType" EntitySet="ItemTypes" />
-      <End Role="Item" EntitySet="Items" />
-    </AssociationSet>
-    <EntitySet Name="ItemImages" EntityType="MSFWModel.ItemImage" />
-  </EntityContainer>
   <Association Name="FK_Items_BrandTypes">
     <End Type="MSFWModel.BrandType" Role="BrandType" Multiplicity="1" />
     <End Type="MSFWModel.Item" Role="Item" Multiplicity="*" />
@@ -111,6 +180,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_InvoiceItems_InvoiceDetails">
+    <End Type="MSFWModel.InvoiceDetail" Role="InvoiceDetail" Multiplicity="1" />
+    <End Type="MSFWModel.InvoiceItem" Role="InvoiceItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InvoiceDetail">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="InvoiceItem">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InvoiceItems_Items">
+    <End Type="MSFWModel.Item" Role="Item" Multiplicity="0..1" />
+    <End Type="MSFWModel.InvoiceItem" Role="InvoiceItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="InvID" />
+      </Principal>
+      <Dependent Role="InvoiceItem">
+        <PropertyRef Name="InvID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InvoiceItems_ItemSizes">
+    <End Type="MSFWModel.ItemSize" Role="ItemSize" Multiplicity="0..1" />
+    <End Type="MSFWModel.InvoiceItem" Role="InvoiceItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemSize">
+        <PropertyRef Name="SizeID" />
+      </Principal>
+      <Dependent Role="InvoiceItem">
+        <PropertyRef Name="SizeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Items_ItemTypes">
     <End Type="MSFWModel.ItemType" Role="ItemType" Multiplicity="1" />
     <End Type="MSFWModel.Item" Role="Item" Multiplicity="*" />
@@ -123,12 +228,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="ItemImage">
-    <Key>
-      <PropertyRef Name="ImageID" />
-    </Key>
-    <Property Name="ImageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ICode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
-    <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-  </EntityType>
 </Schema>

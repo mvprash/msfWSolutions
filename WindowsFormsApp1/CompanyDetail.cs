@@ -7,16 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowsFormsApp1
+namespace MSFWSoftSolutions
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class C__MigrationHistory
+    public partial class CompanyDetail
     {
-        public string MigrationId { get; set; }
-        public string ContextKey { get; set; }
-        public byte[] Model { get; set; }
-        public string ProductVersion { get; set; }
+        public int CompanyID { get; set; }
+        public string CompanyName { get; set; }
+        public string GSTNumber { get; set; }
+        public decimal CGST { get; set; }
+        public decimal SGST { get; set; }
+        public decimal IGST { get; set; }
     }
 }
