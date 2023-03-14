@@ -23,7 +23,14 @@ namespace MSFWSoftSolutions
 
         private void mainSalesMenForm_Load(object sender, EventArgs e)
         {
-            lblTSales.Text = "Today Sales: " + msfWContext.InvoiceDetails.Where(x => x.InvoiceDate.Day ==DateTime.Now.Day && x.InvoiceDate.Month ==DateTime.Now.Month && x.InvoiceDate.Year==DateTime.Now.Year).Sum(x => x.TotalPayable).ToString();
+            if (msfWContext.InvoiceDetails.Where(x => x.InvoiceDate.Day == DateTime.Now.Day && x.InvoiceDate.Month == DateTime.Now.Month && x.InvoiceDate.Year == DateTime.Now.Year).Count() > 0)
+            {
+                lblTSales.Text = "Today Sales: " + msfWContext.InvoiceDetails.Where(x => x.InvoiceDate.Day == DateTime.Now.Day && x.InvoiceDate.Month == DateTime.Now.Month && x.InvoiceDate.Year == DateTime.Now.Year).Sum(x => x.TotalPayable).ToString();
+            }
+            else
+            {
+                lblTSales.Text = "Today Sales: -";
+            }
 
             List<InvoiceItem> listInvItemsIncentive = (from incV in msfWContext.InvoiceItems
                                                        where incV.Item.IsSaleDiscount == false
