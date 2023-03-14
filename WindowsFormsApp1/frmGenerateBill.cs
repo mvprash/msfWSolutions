@@ -539,7 +539,7 @@ namespace MSFWSoftSolutions
             CompanyDetail cd=  (from comp in msfWContext.CompanyDetails
                                 where comp.CompanyID.Equals(1)
                                 select comp).FirstOrDefault();
-            string currentDate = DateTime.Now.ToString();
+            string currentDate = DateTime.Now.ToString("dd/MM/yyyy h:mm tt");
 
             string monthYear = DateTime.Now.ToString("MMMM-yyyy"); // Get the current month and year in the format "Month-Year"
             string folderPath = ConfigurationManager.AppSettings["BillDirectoryPath"] + @"\" + monthYear;
@@ -596,7 +596,7 @@ namespace MSFWSoftSolutions
             string headText = cd.CompanyName + "\n" + "Banaswadi";
             string gstText2           = "GSTIN                     : " + cd.GSTNumber + " ";
             string invoiceNumberText2 = " Invoice Number       : " + invPDF.InvoiceNumber + " ";
-            string BillDate = " Date                 : " + currentDate; 
+            string BillDate = " Date                        : " + currentDate  ; 
 
             //headText = headText.Replace(Environment.NewLine, String.Empty).Replace("  ", String.Empty);
             BaseFont bfTimes = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1252, false);

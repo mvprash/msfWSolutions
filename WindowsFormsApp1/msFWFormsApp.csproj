@@ -127,6 +127,12 @@
       <DependentUpon>msFWModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DisplayInvoiceItem.cs" />
+    <Compile Include="FormViewBillDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormViewBillDetails.Designer.cs">
+      <DependentUpon>FormViewBillDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGenerateBill.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     </Compile>
     <EmbeddedResource Include="BillDetailsForm.resx">
       <DependentUpon>BillDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormViewBillDetails.resx">
+      <DependentUpon>FormViewBillDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGenerateBill.resx">
       <DependentUpon>frmGenerateBill.cs</DependentUpon>
