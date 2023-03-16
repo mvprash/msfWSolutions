@@ -29,6 +29,7 @@ namespace MSFWSoftSolutions
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.btnGetDetails = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -255,6 +256,14 @@ namespace MSFWSoftSolutions
             // dataGridViewBillItem
             // 
             this.dataGridViewBillItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewBillItem.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewBillItem.Location = new System.Drawing.Point(618, 429);
             this.dataGridViewBillItem.Name = "dataGridViewBillItem";
             this.dataGridViewBillItem.Size = new System.Drawing.Size(890, 250);

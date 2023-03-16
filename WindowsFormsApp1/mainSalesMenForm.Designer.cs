@@ -161,33 +161,33 @@ namespace MSFWSoftSolutions
             // lblDigitalValue
             // 
             this.lblDigitalValue.AutoSize = true;
-            this.lblDigitalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDigitalValue.ForeColor = System.Drawing.Color.Chartreuse;
+            this.lblDigitalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDigitalValue.ForeColor = System.Drawing.Color.Blue;
             this.lblDigitalValue.Location = new System.Drawing.Point(1334, 129);
             this.lblDigitalValue.Name = "lblDigitalValue";
-            this.lblDigitalValue.Size = new System.Drawing.Size(14, 24);
+            this.lblDigitalValue.Size = new System.Drawing.Size(22, 31);
             this.lblDigitalValue.TabIndex = 16;
             this.lblDigitalValue.Text = "I";
             // 
             // lblCashValue
             // 
             this.lblCashValue.AutoSize = true;
-            this.lblCashValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCashValue.ForeColor = System.Drawing.Color.Chartreuse;
+            this.lblCashValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCashValue.ForeColor = System.Drawing.Color.Blue;
             this.lblCashValue.Location = new System.Drawing.Point(1334, 207);
             this.lblCashValue.Name = "lblCashValue";
-            this.lblCashValue.Size = new System.Drawing.Size(14, 24);
+            this.lblCashValue.Size = new System.Drawing.Size(22, 31);
             this.lblCashValue.TabIndex = 17;
             this.lblCashValue.Text = "I";
             // 
             // lblTotalValue
             // 
             this.lblTotalValue.AutoSize = true;
-            this.lblTotalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalValue.ForeColor = System.Drawing.Color.Chartreuse;
+            this.lblTotalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalValue.ForeColor = System.Drawing.Color.Blue;
             this.lblTotalValue.Location = new System.Drawing.Point(1334, 286);
             this.lblTotalValue.Name = "lblTotalValue";
-            this.lblTotalValue.Size = new System.Drawing.Size(14, 24);
+            this.lblTotalValue.Size = new System.Drawing.Size(22, 31);
             this.lblTotalValue.TabIndex = 18;
             this.lblTotalValue.Text = "I";
             // 

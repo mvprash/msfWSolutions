@@ -29,6 +29,7 @@ namespace MSFWSoftSolutions
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewBillDetails = new System.Windows.Forms.DataGridView();
             this.btbClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBillDetails)).BeginInit();
@@ -37,6 +38,14 @@ namespace MSFWSoftSolutions
             // dataGridViewBillDetails
             // 
             this.dataGridViewBillDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewBillDetails.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewBillDetails.Location = new System.Drawing.Point(29, 35);
             this.dataGridViewBillDetails.Name = "dataGridViewBillDetails";
             this.dataGridViewBillDetails.Size = new System.Drawing.Size(745, 215);

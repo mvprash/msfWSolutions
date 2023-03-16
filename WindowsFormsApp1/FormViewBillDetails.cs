@@ -25,9 +25,10 @@ namespace MSFWSoftSolutions
 
             try
             {
-                var billDetails = msfWContext.InvoiceItems.Include("ItemSize").Where(x => x.InvoiceID == this.InvoiceID).ToList();
+                var billDetails = msfWContext.InvoiceItems.Include("ItemSize").Include("Item").Where(x => x.InvoiceID == this.InvoiceID).ToList();
                 dataGridViewBillDetails.ReadOnly = true;
                 dataGridViewBillDetails.DataSource = billDetails;
+                
 
                 dataGridViewBillDetails.Columns[0].Visible = false;
                 dataGridViewBillDetails.Columns[1].Visible = false;
@@ -45,8 +46,14 @@ namespace MSFWSoftSolutions
                 newColumn.Name = "ItemSizeDetails";
                 newColumn.DataPropertyName = "ItemSizeDetailsData";
 
+                DataGridViewTextBoxColumn newColumnIC = new DataGridViewTextBoxColumn();
+                newColumnIC.HeaderText = "Item Code";
+                newColumnIC.Name = "ItemCodeDetails";
+                newColumnIC.DataPropertyName = "ItemCodeSizeDetailsData";
+
                 // Add the column to the datagrid
                 dataGridViewBillDetails.Columns.Add(newColumn);
+                dataGridViewBillDetails.Columns.Add(newColumnIC);
 
 
 
@@ -56,7 +63,15 @@ namespace MSFWSoftSolutions
                     if (((InvoiceItem)row.DataBoundItem).ItemSize != null)
                     {
                         string size = ((InvoiceItem)row.DataBoundItem).ItemSize.Size.ToString();
+                        
                         row.Cells[11].Value = size;
+                    }
+
+                    if (((InvoiceItem)row.DataBoundItem).Item != null)
+                    {
+                        string ICode = ((InvoiceItem)row.DataBoundItem).Item.ICode.ToString();
+
+                        row.Cells[12].Value = ICode;
                     }
                 }
 

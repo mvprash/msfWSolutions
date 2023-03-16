@@ -416,6 +416,7 @@ namespace MSFWSoftSolutions
                           select iteM).FirstOrDefault();
             if (iBill != null)
             {
+                ResetItemControls(this.Controls);
 
                 var entity = msfWContext.Items.Find(iBill.InvID);
                 msfWContext.Entry(entity).Reload();
@@ -470,11 +471,14 @@ namespace MSFWSoftSolutions
                     //{
                         // Create a new RadioButton
                         radioButtons[i] = new RadioButton();
+                        radioButtons[i].Font = new System.Drawing.Font(radioButtons[i].Font.FontFamily, 16);
+
+
+                         // Set the properties of the RadioButton
+                         radioButtons[i].Text = "Size:-" + iSize.Size;
                         
-                        // Set the properties of the RadioButton
-                        radioButtons[i].Text = "Size Number " + iSize.Size;
-                        radioButtons[i].Location = new Point(500, 20 + i * 25);
-                        radioButtons[i].Size = new Size(100, 20);
+                        radioButtons[i].Location = new Point(500, 20 + i * 35);
+                        radioButtons[i].Size = new Size(200, 40);
 
                         // Add the RadioButton to a container control
                         panel1.Controls.Add(radioButtons[i]);
