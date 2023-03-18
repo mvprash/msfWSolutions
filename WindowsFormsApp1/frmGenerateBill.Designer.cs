@@ -54,8 +54,13 @@ namespace MSFWSoftSolutions
             this.label4 = new System.Windows.Forms.Label();
             this.labelTotalBillAmount = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.textCash = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textDigital = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBillItem)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -119,6 +124,7 @@ namespace MSFWSoftSolutions
             this.textQuantity.Name = "textQuantity";
             this.textQuantity.Size = new System.Drawing.Size(75, 44);
             this.textQuantity.TabIndex = 13;
+            this.textQuantity.TextChanged += new System.EventHandler(this.textQuantity_TextChanged);
             this.textQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textQuantity_KeyPress);
             // 
             // label3
@@ -323,10 +329,60 @@ namespace MSFWSoftSolutions
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(895, 687);
+            this.panel2.Controls.Add(this.textCash);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.textDigital);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Location = new System.Drawing.Point(940, 687);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(613, 75);
+            this.panel2.Size = new System.Drawing.Size(568, 75);
             this.panel2.TabIndex = 19;
+            // 
+            // textCash
+            // 
+            this.textCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textCash.Location = new System.Drawing.Point(261, 17);
+            this.textCash.Multiline = true;
+            this.textCash.Name = "textCash";
+            this.textCash.Size = new System.Drawing.Size(75, 29);
+            this.textCash.TabIndex = 17;
+            this.textCash.Text = "0";
+            this.textCash.TextChanged += new System.EventHandler(this.textCash_TextChanged);
+            this.textCash.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textCash_KeyPress);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(187, 17);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 29);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Cash";
+            // 
+            // textDigital
+            // 
+            this.textDigital.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textDigital.Location = new System.Drawing.Point(106, 17);
+            this.textDigital.Multiline = true;
+            this.textDigital.Name = "textDigital";
+            this.textDigital.Size = new System.Drawing.Size(75, 29);
+            this.textDigital.TabIndex = 16;
+            this.textDigital.Text = "0";
+            this.textDigital.TextChanged += new System.EventHandler(this.textDigital_TextChanged);
+            this.textDigital.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textDigital_KeyPress);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.label5.Location = new System.Drawing.Point(30, 17);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 29);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Digital";
             // 
             // frmGenerateBill
             // 
@@ -351,6 +407,8 @@ namespace MSFWSoftSolutions
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBillItem)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -381,5 +439,9 @@ namespace MSFWSoftSolutions
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label labelTotalBillAmount;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox textCash;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textDigital;
+        private System.Windows.Forms.Label label5;
     }
 }

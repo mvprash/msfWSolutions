@@ -39,6 +39,8 @@
     <Property Name="InvoicePDF" Type="varbinary(max)" Nullable="false" />
     <Property Name="Digital" Type="bit" Nullable="false" />
     <Property Name="Cash" Type="bit" Nullable="false" />
+    <Property Name="DigitalAmount" Type="int" />
+    <Property Name="CashAmount" Type="int" />
   </EntityType>
   <EntityType Name="InvoiceItems">
     <Key>

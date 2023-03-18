@@ -32,6 +32,8 @@
     <EntitySetMapping Name="InvoiceDetails">
       <EntityTypeMapping TypeName="MSFWModel.InvoiceDetail">
         <MappingFragment StoreEntitySet="InvoiceDetails">
+          <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+          <ScalarProperty Name="DigitalAmount" ColumnName="DigitalAmount" />
           <ScalarProperty Name="Cash" ColumnName="Cash" />
           <ScalarProperty Name="Digital" ColumnName="Digital" />
           <ScalarProperty Name="InvoicePDF" ColumnName="InvoicePDF" />

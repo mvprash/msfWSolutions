@@ -77,6 +77,8 @@
     <Property Name="InvoicePDF" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
     <Property Name="Digital" Type="Boolean" Nullable="false" />
     <Property Name="Cash" Type="Boolean" Nullable="false" />
+    <Property Name="DigitalAmount" Type="Int32" />
+    <Property Name="CashAmount" Type="Int32" />
     <NavigationProperty Name="InvoiceItems" Relationship="MSFWModel.FK_InvoiceItems_InvoiceDetails" FromRole="InvoiceDetail" ToRole="InvoiceItem" />
   </EntityType>
   <EntityType Name="InvoiceItem">

@@ -138,14 +138,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MSFWSoftSolutions.exe" size="113648">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MSFWSoftSolutions.exe" size="116720">
       <assemblyIdentity name="MSFWSoftSolutions" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>z8ySUYv5XVKoWuftzU4uPc4YxM7kU7QOZnjM3TKkR2U=</dsig:DigestValue>
+        <dsig:DigestValue>1bzGLfVVg2RL31DehG0eBKSzpTc3CvrvofHUiAZtxXE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

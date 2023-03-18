@@ -61,3 +61,4 @@ E:\Software-msFWSolutions\msfWSolutions\WindowsFormsApp1\obj\Debug\MSFWSoftSolut
 E:\Software-msFWSolutions\msfWSolutions\WindowsFormsApp1\obj\Debug\MSFWSoftSolutions.BillDetailsForm.resources
 E:\Software-msFWSolutions\msfWSolutions\WindowsFormsApp1\obj\Debug\MSFWSoftSolutions.mainSalesMenForm.resources
 E:\Software-msFWSolutions\msfWSolutions\WindowsFormsApp1\obj\Debug\MSFWSoftSolutions.FormViewBillDetails.resources
+E:\Software-msFWSolutions\msfWSolutions\WindowsFormsApp1\obj\Debug\msFWFormsApp.csproj.AssemblyReference.cache

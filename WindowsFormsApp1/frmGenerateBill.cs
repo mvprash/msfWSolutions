@@ -15,6 +15,8 @@ using System.Windows.Forms;
 
 namespace MSFWSoftSolutions
 {
+   
+
     public partial class frmGenerateBill : Form
     {
         // Create an array of RadioButtons
@@ -25,6 +27,10 @@ namespace MSFWSoftSolutions
         bool isWithoutItemCodeBill;
         bool isDigitalSelected = false, isCashSelected = false;
         BindingList<DisplayInvoiceItem> displayBillItems = new BindingList<DisplayInvoiceItem>();
+
+        // Create a new instance of the CheckBox class
+        CheckBox checkBox1 = new CheckBox();
+        CheckBox checkBox2 = new CheckBox();
         public frmGenerateBill()
         {
             InitializeComponent();
@@ -65,6 +71,22 @@ namespace MSFWSoftSolutions
 
         private void btnGenerateBill_Click(object sender, EventArgs e)
         {
+            if(textCash.Text=="")
+            {
+                textCash.Text = "0";
+            }
+            if (textDigital.Text == "")
+            {
+                textDigital.Text = "0";
+            }
+
+            if (Convert.ToInt32(labelTotalBillAmount.Text)!=((Convert.ToInt32(textCash.Text)+Convert.ToInt32(textDigital.Text))))
+            {
+                MessageBox.Show("The Paid Amount is not equal to Payable Amount");
+                return;
+
+            }
+
             if (displayBillItems.Count() == 0 || dataGridViewBillItem.Rows.Count == 0)
             {
                 MessageBox.Show("No items to generate the bill");
@@ -184,10 +206,37 @@ namespace MSFWSoftSolutions
                 invDetail.Cash = true;
 
             }
-            else if (isDigitalSelected == true)
+            if (isDigitalSelected == true)
             {
                 invDetail.Digital = true;
             }
+
+            switch (Convert.ToInt32(textCash.Text))
+            {
+                case 0:
+                    invDetail.CashAmount = 0;
+                    break;
+                default:
+                    invDetail.CashAmount = Convert.ToInt32(textCash.Text);
+                    break;
+            }
+
+            switch (Convert.ToInt32(textDigital.Text))
+            {
+                case 0:
+                    invDetail.DigitalAmount = 0;
+                    break;
+                default:
+                    invDetail.DigitalAmount = Convert.ToInt32(textDigital.Text);
+                    break;
+            }
+
+
+
+            //else if (isDigitalSelected == true)
+            //{
+            //    invDetail.Digital = true;
+            //}
             //MessageBox.Show("B3");
             msfWContext.InvoiceDetails.Add(invDetail);
             msfWContext.SaveChanges();
@@ -352,51 +401,97 @@ namespace MSFWSoftSolutions
 
         private void frmGenerateBill_Load(object sender, EventArgs e)
         {
-            // Create a new instance of the RadioButton class
-            RadioButton radioButton1 = new RadioButton();
-            RadioButton radioButton2 = new RadioButton();
+            //// Create a new instance of the RadioButton class
+            //RadioButton radioButton1 = new RadioButton();
+            //RadioButton radioButton2 = new RadioButton();
 
-            // Set the properties of the RadioButton objects
-            radioButton1.Name = "radioButtonDP";
-            radioButton1.Text = "Digital";
-            radioButton1.Location = new Point(10, 10);
-            radioButton1.Size = new Size(100, 50);
-            // Assuming you have a RadioButton control named radioButton1
-            radioButton1.Font = new System.Drawing.Font(radioButton1.Font.FontFamily, 14, FontStyle.Regular);
-
-
-            radioButton2.Name = "radioButtonCash";
-            radioButton2.Text = "Cash";
-            radioButton2.Location = new Point(120, 10);
-            radioButton2.Size = new Size(100, 50);
-            // Assuming you have a RadioButton control named radioButton1
-            radioButton2.Font = new System.Drawing.Font(radioButton1.Font.FontFamily, 14, FontStyle.Regular);
+            //// Set the properties of the RadioButton objects
+            //radioButton1.Name = "radioButtonDP";
+            //radioButton1.Text = "Digital";
+            //radioButton1.Location = new Point(350, 10);
+            //radioButton1.Size = new Size(100, 50);
+            //// Assuming you have a RadioButton control named radioButton1
+            //radioButton1.Font = new System.Drawing.Font(radioButton1.Font.FontFamily, 14, FontStyle.Regular);
 
 
-            // Add an event handler for the CheckedChanged event of the RadioButton objects
-            radioButton1.CheckedChanged += new EventHandler(radioButton_CheckedChangedPayment);
-            radioButton2.CheckedChanged += new EventHandler(radioButton_CheckedChangedPayment);
+            //radioButton2.Name = "radioButtonCash";
+            //radioButton2.Text = "Cash";
+            //radioButton2.Location = new Point(450, 10);
+            //radioButton2.Size = new Size(100, 50);
+            //// Assuming you have a RadioButton control named radioButton1
+            //radioButton2.Font = new System.Drawing.Font(radioButton1.Font.FontFamily, 14, FontStyle.Regular);
 
-            // Add the RadioButton objects to the Controls collection of the parent container control
-            panel2.Controls.Add(radioButton1);
-            panel2.Controls.Add(radioButton2);
+
+            //// Add an event handler for the CheckedChanged event of the RadioButton objects
+            //radioButton1.CheckedChanged += new EventHandler(radioButton_CheckedChangedPayment);
+            //radioButton2.CheckedChanged += new EventHandler(radioButton_CheckedChangedPayment);
+
+            //// Add the RadioButton objects to the Controls collection of the parent container control
+            //panel2.Controls.Add(radioButton1);
+            //panel2.Controls.Add(radioButton2);
+
+           
+
+            // Set the properties of the CheckBox objects
+            checkBox1.Name = "checkBoxDP";
+            checkBox1.Text = "Digital";
+            checkBox1.Location = new Point(350, 10);
+            checkBox1.Size = new Size(100, 50);
+            // Assuming you have a CheckBox control named checkBox1
+            checkBox1.Font = new System.Drawing.Font(checkBox1.Font.FontFamily, 14, FontStyle.Regular);
+            checkBox1.Enabled = false;
+
+
+            checkBox2.Name = "checkBoxCash";
+            checkBox2.Text = "Cash";
+            checkBox2.Location = new Point(450, 10);
+            checkBox2.Size = new Size(100, 50);
+            // Assuming you have a CheckBox control named checkBox1
+            checkBox2.Font = new System.Drawing.Font(checkBox1.Font.FontFamily, 14, FontStyle.Regular);
+            checkBox2.Enabled = false;
+
+
+            // Add an event handler for the CheckedChanged event of the CheckBox objects
+            checkBox1.CheckedChanged += new EventHandler(checkBox_CheckedChangedPayment);
+            checkBox2.CheckedChanged += new EventHandler(checkBox_CheckedChangedPayment);
+
+            // Add the CheckBox objects to the Controls collection of the parent container control
+            panel2.Controls.Add(checkBox1);
+            panel2.Controls.Add(checkBox2);
+
 
         }
 
-        private void radioButton_CheckedChangedPayment(object sender, EventArgs e)
+        //private void radioButton_CheckedChangedPayment(object sender, EventArgs e)
+        //{
+        //    //isCashSelected = false;
+        //    //isDigitalSelected = false;
+        //    RadioButton radioButton = (RadioButton)sender;
+        //    if (radioButton.Text == "Cash")
+        //    {
+        //        isCashSelected = true;
+        //    }
+        //    else if (radioButton.Text == "Digital")
+        //    {
+        //        isDigitalSelected = true;
+        //    }
+            
+        //}
+
+
+        private void checkBox_CheckedChangedPayment(object sender, EventArgs e)
         {
-            isCashSelected = false;
-            isDigitalSelected = false;
-            RadioButton radioButton = (RadioButton)sender;
-            if (radioButton.Text == "Cash")
+            //isCashSelected = false;
+            //isDigitalSelected = false;
+            CheckBox checkBox = (CheckBox)sender;
+            if (checkBox.Text == "Cash" && checkBox.Checked)
             {
                 isCashSelected = true;
             }
-            else if (radioButton.Text == "Digital")
+            if (checkBox.Text == "Digital" && checkBox.Checked)
             {
                 isDigitalSelected = true;
             }
-            
         }
 
 
@@ -1028,6 +1123,86 @@ namespace MSFWSoftSolutions
             {
                 // Set the Handled property of the KeyPressEventArgs object to true to indicate the event is handled
                 e.Handled = true;
+            }
+        }
+
+        private void textQuantity_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textDigital_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check if the key pressed is a numeric digit or a control key (backspace, delete, etc.)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                // Set the Handled property of the KeyPressEventArgs object to true to indicate the event is handled
+                e.Handled = true;
+            }
+        }
+
+        private void textCash_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check if the key pressed is a numeric digit or a control key (backspace, delete, etc.)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                // Set the Handled property of the KeyPressEventArgs object to true to indicate the event is handled
+                e.Handled = true;
+            }
+        }
+
+        private void textDigital_TextChanged(object sender, EventArgs e)
+        {
+            // Assuming you have a CheckBox control named checkBox1
+            if (textDigital.Text != "")
+            {
+                if (Convert.ToInt32(textDigital.Text) > 0)
+                {
+                    checkBox1.Checked = true;
+                    //checkBox1.CheckedChanged += checkBox_CheckedChangedPayment;
+                    isDigitalSelected = true;
+                }
+                else
+                {
+
+                    checkBox1.Checked = false;
+                    //checkBox1.CheckedChanged += checkBox_CheckedChangedPayment;
+                    isDigitalSelected = false;
+                }
+            }
+            else
+            {
+                checkBox1.Checked = false;
+                //checkBox1.CheckedChanged += checkBox_CheckedChangedPayment;
+                isDigitalSelected = false;
+            }
+
+        }
+
+        private void textCash_TextChanged(object sender, EventArgs e)
+        {
+            // Assuming you have a CheckBox control named checkBox1
+            if (textCash.Text != "")
+            {
+                if (Convert.ToInt32(textCash.Text) > 0)
+                {
+                    checkBox2.Checked = true;
+                    checkBox2.CheckedChanged += checkBox_CheckedChangedPayment;
+                    isCashSelected = true;
+                }
+                else
+                {
+
+                    checkBox2.Checked = false;
+                    //checkBox2.CheckedChanged += checkBox_CheckedChangedPayment;
+                    isCashSelected = false;
+                }
+            }
+            else
+            {
+                checkBox2.Checked = false;
+                //checkBox2.CheckedChanged += checkBox_CheckedChangedPayment;
+                isCashSelected = false;
             }
         }
 

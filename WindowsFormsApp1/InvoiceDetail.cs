@@ -30,6 +30,8 @@ namespace MSFWSoftSolutions
         public byte[] InvoicePDF { get; set; }
         public bool Digital { get; set; }
         public bool Cash { get; set; }
+        public Nullable<int> DigitalAmount { get; set; }
+        public Nullable<int> CashAmount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }

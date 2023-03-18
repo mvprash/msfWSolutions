@@ -44,6 +44,8 @@
           <Property Name="InvoicePDF" Type="varbinary(max)" Nullable="false" />
           <Property Name="Digital" Type="bit" Nullable="false" />
           <Property Name="Cash" Type="bit" Nullable="false" />
+          <Property Name="DigitalAmount" Type="int" />
+          <Property Name="CashAmount" Type="int" />
         </EntityType>
         <EntityType Name="InvoiceItems">
           <Key>
@@ -308,6 +310,8 @@ warning 6035: The relationship 'FK_ItemSizes_Items' has columns that are not par
           <Property Name="InvoicePDF" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="Digital" Type="Boolean" Nullable="false" />
           <Property Name="Cash" Type="Boolean" Nullable="false" />
+          <Property Name="DigitalAmount" Type="Int32" />
+          <Property Name="CashAmount" Type="Int32" />
           <NavigationProperty Name="InvoiceItems" Relationship="MSFWModel.FK_InvoiceItems_InvoiceDetails" FromRole="InvoiceDetail" ToRole="InvoiceItem" />
         </EntityType>
         <EntityType Name="InvoiceItem">
@@ -496,6 +500,8 @@ warning 6035: The relationship 'FK_ItemSizes_Items' has columns that are not par
           <EntitySetMapping Name="InvoiceDetails">
             <EntityTypeMapping TypeName="MSFWModel.InvoiceDetail">
               <MappingFragment StoreEntitySet="InvoiceDetails">
+                <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+                <ScalarProperty Name="DigitalAmount" ColumnName="DigitalAmount" />
                 <ScalarProperty Name="Cash" ColumnName="Cash" />
                 <ScalarProperty Name="Digital" ColumnName="Digital" />
                 <ScalarProperty Name="InvoicePDF" ColumnName="InvoicePDF" />

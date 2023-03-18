@@ -70,7 +70,7 @@ namespace MSFWSoftSolutions
 
             if (recDigCount > 0)
             {
-                lblDigitalValue.Text =  msfWContext.InvoiceDetails.Where(x => x.InvoiceDate.Day >= frmDate.Day && x.InvoiceDate.Day <= toDate.Day && x.InvoiceDate.Month >= frmDate.Month && x.InvoiceDate.Month <= toDate.Month && x.InvoiceDate.Year >= frmDate.Year && x.InvoiceDate.Year <= toDate.Year && x.Digital==true).Sum(x => x.TotalPayable).ToString() + ".00/-";
+                lblDigitalValue.Text =  msfWContext.InvoiceDetails.Where(x => x.InvoiceDate.Day >= frmDate.Day && x.InvoiceDate.Day <= toDate.Day && x.InvoiceDate.Month >= frmDate.Month && x.InvoiceDate.Month <= toDate.Month && x.InvoiceDate.Year >= frmDate.Year && x.InvoiceDate.Year <= toDate.Year && x.Digital==true).Sum(x => x.DigitalAmount).ToString() + ".00/-";
             }
             else
             {
@@ -79,7 +79,7 @@ namespace MSFWSoftSolutions
 
             if (recCashCount > 0)
             {
-                lblCashValue.Text =  msfWContext.InvoiceDetails.Where(x => x.InvoiceDate.Day >= frmDate.Day && x.InvoiceDate.Day <= toDate.Day && x.InvoiceDate.Month >= frmDate.Month && x.InvoiceDate.Month <= toDate.Month && x.InvoiceDate.Year >= frmDate.Year && x.InvoiceDate.Year <= toDate.Year && x.Cash == true).Sum(x => x.TotalPayable).ToString() + ".00/-";
+                lblCashValue.Text =  msfWContext.InvoiceDetails.Where(x => x.InvoiceDate.Day >= frmDate.Day && x.InvoiceDate.Day <= toDate.Day && x.InvoiceDate.Month >= frmDate.Month && x.InvoiceDate.Month <= toDate.Month && x.InvoiceDate.Year >= frmDate.Year && x.InvoiceDate.Year <= toDate.Year && x.Cash == true).Sum(x => x.CashAmount).ToString() + ".00/-";
             }
             else
             {
@@ -101,7 +101,9 @@ namespace MSFWSoftSolutions
             dataGridViewGeneratedBills.Columns[0].Visible = false;
             dataGridViewGeneratedBills.Columns[8].Visible = true;
             dataGridViewGeneratedBills.Columns[9].Visible = true;
-            dataGridViewGeneratedBills.Columns[10].Visible = false;
+            dataGridViewGeneratedBills.Columns[10].Visible = true;
+
+            dataGridViewGeneratedBills.Columns[12].Visible = false;
 
 
             DataGridViewColumn numColumn = dataGridViewGeneratedBills.Columns[2];
