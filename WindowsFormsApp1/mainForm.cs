@@ -123,7 +123,7 @@ namespace MSFWSoftSolutions
                         itm.AvailableUnits = Convert.ToInt32(dataRow[6].ToString());
                         itm.CostPrice = Convert.ToInt32(dataRow[7].ToString());
                         itm.SellingPrice = Convert.ToInt32(dataRow[8].ToString());
-                        itm.LastSellingPrice = Convert.ToInt32(dataRow[9].ToString());
+                        itm.LastSellingPrice = (int)Math.Floor(Convert.ToDecimal(dataRow[9].ToString()));
                         itm.DateOfPurchase = Convert.ToDateTime(dataRow[10].ToString());
                         itm.Rack = dataRow[11].ToString();
                         itm.BatchNumber = dataRow[12].ToString();
